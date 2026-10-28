@@ -77,8 +77,8 @@ Your user is `root` and the password is the one you chose. Start the container a
 ## 3. Get the code and install dependencies
 
 ```bash
-git clone <this-repo-url>
-cd mark1FORera
+git clone https://github.com/NIANan0721/mecatron-er-agent.git
+cd mecatron-er-agent
 
 # JavaScript dependencies (backend + frontend)
 npm install
@@ -223,7 +223,7 @@ After signing up you land on the **Email cases** dashboard, which shows the 6 se
 ## 8. Project layout
 
 ```
-mark1FORera/
+mecatron-er-agent/
 ├── app/
 │   ├── controllers/        # HTTP controllers (dashboard, signup, login)
 │   └── models/             # Lucid models with relationships, one per table
