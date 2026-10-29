@@ -4,7 +4,22 @@
  */
 
 export const controllers = {
+  CaseApprovers: () => import('#controllers/case_approvers_controller'),
+  CaseDrafts: () => import('#controllers/case_drafts_controller'),
+  CaseEvents: () => import('#controllers/case_events_controller'),
+  CaseRecipients: () => import('#controllers/case_recipients_controller'),
+  Commitments: () => import('#controllers/commitments_controller'),
   Dashboard: () => import('#controllers/dashboard_controller'),
+  DataOverview: () => import('#controllers/data_overview_controller'),
+  Documents: () => import('#controllers/documents_controller'),
+  EmailCases: () => import('#controllers/email_cases_controller'),
+  EmailTemplates: () => import('#controllers/email_templates_controller'),
+  FollowUpTasks: () => import('#controllers/follow_up_tasks_controller'),
+  Interactions: () => import('#controllers/interactions_controller'),
+  Members: () => import('#controllers/members_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
+  Search: () => import('#controllers/search_controller'),
   Session: () => import('#controllers/session_controller'),
+  SponsorContacts: () => import('#controllers/sponsor_contacts_controller'),
+  Sponsors: () => import('#controllers/sponsors_controller'),
 }

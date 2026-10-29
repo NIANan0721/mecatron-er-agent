@@ -1,0 +1,88 @@
+import type { Resource } from '#resources/types'
+
+export const CASE_STATUSES = [
+  'draft',
+  'awaiting_approval',
+  'changes_requested',
+  'approved_ready_to_send',
+  'completed',
+  'cancelled',
+] as const
+
+export const emailCaseResource: Resource = {
+  key: 'email_cases',
+  label: 'Email cases',
+  singular: 'Email case',
+  titleField: 'caseCode',
+  lane: 'cases',
+  icon: 'Mail',
+  fields: [
+    { name: 'caseCode', label: 'Case code', type: 'text', required: true, list: true },
+    { name: 'title', label: 'Title', type: 'text', required: true, list: true },
+    {
+      name: 'sponsorId',
+      label: 'Sponsor',
+      type: 'belongsTo',
+      resource: 'sponsors',
+      relation: 'sponsor',
+      required: true,
+      list: true,
+    },
+    {
+      name: 'primaryContactId',
+      label: 'Primary contact',
+      type: 'belongsTo',
+      resource: 'sponsor_contacts',
+      relation: 'primaryContact',
+      required: true,
+    },
+    {
+      name: 'templateId',
+      label: 'Template',
+      type: 'belongsTo',
+      resource: 'email_templates',
+      relation: 'template',
+    },
+    {
+      name: 'initiatedBy',
+      label: 'Initiated by',
+      type: 'belongsTo',
+      resource: 'members',
+      relation: 'initiator',
+      required: true,
+    },
+    {
+      name: 'assignedSenderId',
+      label: 'Assigned sender',
+      type: 'belongsTo',
+      resource: 'members',
+      relation: 'assignedSender',
+      required: true,
+      list: true,
+    },
+    { name: 'purpose', label: 'Purpose', type: 'textarea', required: true },
+    { name: 'desiredOutcome', label: 'Desired outcome', type: 'textarea' },
+    {
+      name: 'status',
+      label: 'Status',
+      type: 'enum',
+      options: [...CASE_STATUSES],
+      required: true,
+      list: true,
+    },
+    {
+      name: 'completedBy',
+      label: 'Completed by',
+      type: 'belongsTo',
+      resource: 'members',
+      relation: 'completer',
+    },
+    { name: 'completedAt', label: 'Completed at', type: 'datetime' },
+  ],
+  hasMany: [
+    { relation: 'drafts', resource: 'case_drafts', label: 'Drafts' },
+    { relation: 'recipients', resource: 'case_recipients', label: 'Recipients' },
+    { relation: 'approvers', resource: 'case_approvers', label: 'Approvals' },
+    { relation: 'events', resource: 'case_events', label: 'Audit events' },
+  ],
+}

@@ -1,23 +1,28 @@
 import Logo from '~/components/logo'
 import { type ReactNode } from 'react'
-import { House, LogOut } from 'lucide-react'
+import { Database, House, LogOut } from 'lucide-react'
 import { Form } from '@adonisjs/inertia/react'
 import FlashToasts from '~/components/flash_toasts'
 import ThemeToggle from '~/components/theme_toggle'
+import GlobalSearch from '~/components/global_search'
 import NavLink, { type NavItem } from '~/components/nav_link'
 
 /**
  * Top-level app navigation. Add an entry here for every new area of your
  * app, and it shows up in the navigation bar with its active state handled.
  */
-const nav: NavItem[] = [{ label: 'Dashboard', route: 'dashboard', icon: House }]
+const nav: NavItem[] = [
+  { label: 'Dashboard', route: 'dashboard', icon: House },
+  { label: 'Data', route: 'data.index', icon: Database },
+]
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className="console">
       <header className="header header--bar">
         <div className="header__inner">
           <Logo size={28} />
+          <GlobalSearch />
           <div className="header__right">
             <ThemeToggle />
             <Form route="session.destroy">
@@ -42,6 +47,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
       <div className="app-main">{children}</div>
       <FlashToasts />
-    </>
+    </div>
   )
 }
