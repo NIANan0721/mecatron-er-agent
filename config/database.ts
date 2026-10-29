@@ -98,6 +98,19 @@ const dbConfig = defineConfig({
          */
         typeCast: castBooleans as unknown as boolean,
       },
+
+      /**
+       * mysql2 connects with utf8mb4_unicode_ci. Switch every session to the
+       * database collation so strings built in views (e.g. the UNION in
+       * v_sponsor_timeline) never mix collations.
+       */
+      pool: {
+        afterCreate(conn: any, done: (error: Error | null, conn: any) => void) {
+          conn.query('SET NAMES utf8mb4 COLLATE utf8mb4_0900_ai_ci', (error: Error | null) =>
+            done(error, conn)
+          )
+        },
+      },
       migrations: {
         naturalSort: true,
         paths: ['database/migrations'],
