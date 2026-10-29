@@ -1,5 +1,9 @@
 # Mecatron External Relations – Database (`mecatron_er`)
 
+> **Most people don't need this folder.** The app builds the same database with one command, `node ace db:setup` (see the [main README](../README.md)). This kit is an **alternative** for loading the database from plain SQL, for example straight into MySQL Workbench without Node.
+>
+> The TypeScript migrations and seeders in `database/` are the main source of truth. When you change the schema or the demo data there, update `sql/01_schema.sql`, `02_seed.sql` and `03_views.sql` to match.
+
 MySQL 8 database for the Mecatron External Relations Agent:
 
 - **Module 1:** the sponsor knowledge base (sponsors, contacts, commitments, interactions, follow-up tasks, documents)
